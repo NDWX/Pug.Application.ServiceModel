@@ -9,7 +9,7 @@ on:
 
 env:
   BuildConfiguration: debug
-  ApplicationServiceModelProject: Src/Pug.Application.ServiceModel/Pug.Application.ServiceModel.csproj
+  ApplicationServiceModelProject: src/Pug.Application.ServiceModel/Pug.Application.ServiceModel.csproj
 
 jobs:
   build:

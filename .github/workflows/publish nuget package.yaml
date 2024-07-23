@@ -8,7 +8,7 @@ on:
 
 env:
   BuildConfiguration: release
-  ApplicationServiceModelProject: Src/Pug.Application.ServiceModel/Pug.Application.ServiceModel.csproj
+  ApplicationServiceModelProject: src/Pug.Application.ServiceModel/Pug.Application.ServiceModel.csproj
   PackagesBaseFolder: packages
 
 jobs:
