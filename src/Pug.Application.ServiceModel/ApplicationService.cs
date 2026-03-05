@@ -9,13 +9,14 @@ namespace Pug.Application.ServiceModel
 	public abstract class ApplicationService<TDataSession> : IDisposable
 		where TDataSession : class, IApplicationDataSession
 	{
-		private readonly IApplicationData<TDataSession> _applicationDataProvider;
-		private readonly IUserSessionProvider _sessionProvider;
+
+		protected IApplicationData<TDataSession> ApplicationDataProvider { get; }
+		protected IUserSessionProvider SessionProvider { get; }
 
 		protected ApplicationService( IApplicationData<TDataSession> applicationDataProvider, IUserSessionProvider sessionProvider )
 		{
-			_applicationDataProvider = applicationDataProvider;
-			_sessionProvider = sessionProvider;
+			ApplicationDataProvider = applicationDataProvider;
+			SessionProvider = sessionProvider;
 
 			sessionProvider.SessionStarted += SessionProvider_SessionStarted;
 		}
@@ -31,12 +32,11 @@ namespace Pug.Application.ServiceModel
 
 			ApplicationTransaction<TDataSession> transaction = Transaction;
 
-			if(transaction != null)
+			if( transaction == null ) return;
+
+			foreach(ApplicationTransaction<TDataSession> tx in UserTransactions.Values)
 			{
-				foreach(ApplicationTransaction<TDataSession> tx in UserTransactions.Values)
-				{
-					tx.Dispose();
-				}
+				tx.Dispose();
 			}
 
 		}
@@ -45,7 +45,7 @@ namespace Pug.Application.ServiceModel
 		{
 			get
 			{
-				IUserSession userSession = _sessionProvider.CurrentSession;
+				IUserSession userSession = SessionProvider.CurrentSession;
 
 				IDictionary<string, ApplicationTransaction<TDataSession>> userTransactions = userSession.Get<IDictionary<string, ApplicationTransaction<TDataSession>>>();
 
@@ -71,13 +71,13 @@ namespace Pug.Application.ServiceModel
 		{
 			get
 			{
-				IUserSession userSession = _sessionProvider.CurrentSession;
+				IUserSession userSession = SessionProvider.CurrentSession;
 
 				return userSession?.Get<ApplicationTransaction<TDataSession>>("CURRENT");
 			}
 			set
 			{
-				IUserSession userSession = _sessionProvider.CurrentSession;
+				IUserSession userSession = SessionProvider.CurrentSession;
 
 				userSession.Set("CURRENT", value);
 			}
@@ -93,9 +93,7 @@ namespace Pug.Application.ServiceModel
 
 		public IApplicationTransaction<TDataSession> BeginTransaction()
 		{
-			ApplicationTransaction<TDataSession> transaction = null;
-
-			transaction = new ApplicationTransaction<TDataSession>();
+			ApplicationTransaction<TDataSession> transaction = new ApplicationTransaction<TDataSession>();
 			Register(transaction);
 
 			return transaction;
