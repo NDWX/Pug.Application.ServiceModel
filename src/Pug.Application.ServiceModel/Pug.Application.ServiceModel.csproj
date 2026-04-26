@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>Application service model library</Description>
     <AssemblyTitle>Pug.Application.ServiceModel</AssemblyTitle>
-    <TargetFrameworks>netstandard2.0;netcoreapp2.1;</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp2.1;netcoreapp3.0;net5.0;net6.0;net8.0;net10.0;</TargetFrameworks>
     <AssemblyName>Pug.Application.ServiceModel</AssemblyName>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
