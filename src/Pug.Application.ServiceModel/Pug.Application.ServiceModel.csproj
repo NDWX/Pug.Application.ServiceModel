@@ -12,20 +12,20 @@
     <PackageTags>Pug Application Service Model Security Session Transaction</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/NDWX/PugFX.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/NDWX/Pug.Application.ServiceModel.git</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0+</PackageLicenseExpression>
     <License>Apache2.0</License>
-    <Version>2.0.0.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <PackageVersion>2.0.0</PackageVersion>
-    <PackageReleaseNotes>Upgraded Pug.Application.* dependencies to latest versions</PackageReleaseNotes>
+    <Version>2.1.0.0</Version>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
+    <PackageVersion>2.1.0</PackageVersion>
+    <PackageReleaseNotes>Upgraded Pug.Application.Security.Abstractions to v3.1.0</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Pug.Application.Data.Common" Version="1.1.0" />
     <PackageReference Include="Pug.Application" Version="1.1.0" />
-    <PackageReference Include="Pug.Application.Security.Abstractions" Version="3.0.1" />
+    <PackageReference Include="Pug.Application.Security.Abstractions" Version="3.1.0" />
   </ItemGroup>
   
 </Project>
